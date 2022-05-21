@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/graph_main"
+    app:startDestination="@id/roomFragment">
+
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.mambobryan.samba.ui.characters.RemoteOnlyFragment"
+        android:label="NewsFragment" />
+
+    <fragment
+        android:id="@+id/remoteWithCacheFragment"
+        android:name="com.mambobryan.samba.ui.characters.RemoteWithCacheFragment"
+        android:label="RemoteWithCacheFragment" >
+        <action
+            android:id="@+id/action_remoteWithCacheFragment_to_composeFragment"
+            app:destination="@id/composeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/roomFragment"
+        android:name="com.mambobryan.samba.ui.notes.RoomFragment"
+        android:label="RoomFragment" />
+
+    <fragment
+        android:id="@+id/firestoreFragment"
+        android:name="com.mambobryan.samba.ui.notes.FirestoreFragment"
+        android:label="FirestoreFragment" />
+    <fragment
+        android:id="@+id/composeFragment"
+        android:name="com.mambobryan.samba.ui.characters.ComposeFragment"
+        android:label="ComposeFragment" />
+
+</navigation>

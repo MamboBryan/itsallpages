@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/roomFragment"
+        android:icon="@drawable/ic_baseline_local_library_24"
+        android:title="Local"/>
+
+    <item
+        android:id="@+id/newsFragment"
+        android:icon="@drawable/ic_baseline_network_wifi_24"
+        android:title="Remote"/>
+
+    <item
+        android:id="@+id/firestoreFragment"
+        android:icon="@drawable/ic_baseline_local_fire_department_24"
+        android:title="Firestore"/>
+
+    <item
+        android:id="@+id/remoteWithCacheFragment"
+        android:icon="@drawable/ic_baseline_signal_wifi_statusbar_connected_no_internet_4_24"
+        android:title="Remote  &amp; Cache"/>
+
+</menu>
