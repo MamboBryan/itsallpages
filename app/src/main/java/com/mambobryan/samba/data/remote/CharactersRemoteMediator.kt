@@ -75,21 +75,16 @@ class CharactersRemoteMediator(
                 val keys =
                     characters.map { it.id?.let { id -> CharacterKeys(id, prevKey, nextKey) } }
 
-                Timber.i("Adds characters")
-                database.charactersDao().insert(characters)
-
-                Timber.i("Adds Keys")
                 database.characterKeysDao().insert(keys as List<CharacterKeys>)
+                database.charactersDao().insert(characters)
 
             }
 
             return MediatorResult.Success(endOfPaginationReached = isEndOfPagination)
 
         } catch (exception: IOException) {
-            Timber.i("Getting articles IO Error")
             return MediatorResult.Error(exception)
         } catch (exception: HttpException) {
-            Timber.i("Getting articles Http Exception")
             return MediatorResult.Error(exception)
         }
     }

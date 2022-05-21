@@ -19,7 +19,7 @@ class NoteRepository @Inject constructor(
     private val collections = Firebase.firestore.collection("notes")
 
     /**
-     * 1.4 -> Create a pager
+     * 1.4 -> Create a pager for local notes
      */
 
     fun getRoomNotes() = Pager(
@@ -27,6 +27,9 @@ class NoteRepository @Inject constructor(
         pagingSourceFactory = { database.notesDao().getAllNotes() }
     ).flow
 
+    /**
+     * 3.3 -> Create a pager for firestore notes
+     */
     fun getFirestoreNotes() = Pager(
         config = PagingConfig(pageSize = 20, enablePlaceholders = false),
         pagingSourceFactory = { NotesPagingSource(collections) }

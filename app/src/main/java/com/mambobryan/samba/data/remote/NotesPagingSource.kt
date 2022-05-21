@@ -11,25 +11,32 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.tasks.await
 import timber.log.Timber
 
+/**
+ * 3.2 -> Create a custom paging source class and extend the paging library
+ *        PagingSource class
+ */
 class NotesPagingSource(
     private val collection: CollectionReference
 ) : PagingSource<DocumentSnapshot, Note>() {
 
     override fun getRefreshKey(state: PagingState<DocumentSnapshot, Note>): DocumentSnapshot? {
-        TODO("Not yet implemented")
+        return state.anchorPosition?.let { anchorPosition ->
+            state.closestPageToPosition(anchorPosition)?.prevKey
+                ?: state.closestPageToPosition(anchorPosition)?.nextKey
+        }
     }
 
     override suspend fun load(params: LoadParams<DocumentSnapshot>): LoadResult<DocumentSnapshot, Note> {
 
-        val page = params.key
+        val document = params.key
 
         return try {
 
-            val query = collection.orderBy("date", Query.Direction.DESCENDING)
+            val query = collection.orderBy("date", Query.Direction.DESCENDING).limit(20)
 
             val documents =
-                if (page == null) query.limit(20).get().await()
-                else query.limit(20).startAfter(page).get().await()
+                if (document == null) query.get().await()
+                else query.startAfter(document).get().await()
 
             val nextKey = if (documents.isEmpty) null else documents.last()
 //            val nextKey = documents.lastOrNull()

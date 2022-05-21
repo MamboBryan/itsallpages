@@ -72,15 +72,6 @@ fun CharactersContent(modifier: Modifier, characters: LazyPagingItems<Character>
         errorState?.let { "\uD83D\uDE28 Wooops ${it.error}" }
     }
 
-    val state = remember {
-        when {
-            isEmptyVisible -> ItemsState.Empty("No Characters Found")
-            isContentVisible -> ItemsState.Error("Couldn't Load Characters")
-            isLoadingVisible -> ItemsState.Loading
-            else -> null
-        }
-    }
-
     Column(modifier = Modifier.fillMaxSize()) {
         CharactersList(modifier = modifier.fillMaxSize(), characters = characters)
     }

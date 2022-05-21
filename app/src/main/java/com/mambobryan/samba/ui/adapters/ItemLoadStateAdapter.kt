@@ -32,15 +32,16 @@ class ItemLoadStateAdapter @Inject constructor() :
 
         fun bind(loadState: LoadState) {
 
+            /**
+             * 2.11 -> Handle request Loading and Error
+             */
+
 //            when(loadState){
 //                LoadState.Loading -> TODO()
 //                is LoadState.NotLoading -> TODO()
 //                is LoadState.Error -> TODO()
 //            }
 
-            /**
-             * 2.11 -> Handle request Loading and Error
-             */
             binding.apply {
                 if (loadState is LoadState.Error) tvStateError.text = loadState.error.localizedMessage
 
